@@ -1,6 +1,9 @@
 package com.arxxus.rest.RestTest;
 
 import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -34,5 +37,17 @@ public class AlienResources {
 		System.out.println(a);
 		repo.create(a);
 		return a;
+	}
+	@POST
+	@Path("alien")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Alien createAlien(@FormParam("id") int id,@FormParam("name") String name,@FormParam("points") int points)
+	{
+		Alien alien =new Alien();
+		alien.setId(id);
+		alien.setName(name);
+		alien.setPoints(points);
+		System.out.println("Form - "+alien);
+		return alien;
 	}
 }
