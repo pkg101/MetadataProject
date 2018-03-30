@@ -10,13 +10,13 @@
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>MetadataResources;com.arxxus.rest.RestTest;credentials;DataContainer;MetadataPOJO</param-value>
+			<param-value>metadataResources;com.arxxus.rest.RestTest;credentials;dataContainer;metadataPOJO;repository</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey Web Application</servlet-name>
-		<url-pattern>/webresources/*</url-pattern>
+		<url-pattern>/metadataresources/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
