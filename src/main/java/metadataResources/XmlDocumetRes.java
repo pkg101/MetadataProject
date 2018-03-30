@@ -25,7 +25,7 @@ public class XmlDocumetRes {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(doc);
-		File targetFile = new File("/home/pradeep/Documents/Mark-4/RestFullAPITest/metadataxml/onlinemeta_"
+		File targetFile = new File("/app/metadataxml/onlinemeta_"
 				+ (new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss").format(new Date()).toString()) + ".xml");
 		StreamResult result = new StreamResult(targetFile);
 		transformer.transform(source, result);
