@@ -4,17 +4,15 @@ import java.io.File;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
-import metadataPOJO.ApexClass;
 import metadataResources.MetadataResource;
 
-@Path("/sfdcmetadata")
+@Path("sfdcmetadata")
 public class MetadataRepository {
 
 	MetadataResource metadataResource = new MetadataResource();
@@ -38,6 +36,9 @@ public class MetadataRepository {
 			case 104:
 				metadataResource.getApexTriggers();
 				break;
+			case 120:
+				metadataResource.getRecordType();
+				break;
 			}
 		}
 		File file = metadataResource.saveXml();
@@ -49,13 +50,7 @@ public class MetadataRepository {
 	//	return Response.seeOther(uri).build();
 	}
 
-	@GET
-	@Path("/apexclasses/")
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public List<ApexClass> getAlienResources() throws Exception {
-		return metadataResource.getApexClasses();
-	}
-
+	
 	/*@GET
 	@Path("/downloadxml/")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
