@@ -10,6 +10,8 @@
 		ApexPage: <input type="checkbox" name="metadata" value="102"><br>
 		ApexComponent: <input type="checkbox" name="metadata" value="103"><br>
 		ApexTrigger: <input type="checkbox" name="metadata" value="104"><br>
+		CustomField: <input type="checkbox" name="metadata" value="105"><br>
+		CustomField1: <input type="checkbox" name="metadata" value="106"><br>
 		RecordType: <input type="checkbox" name="metadata" value="120"><br>
 		<input type="submit" value="Submit">
 	</form>

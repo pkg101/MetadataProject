@@ -36,6 +36,12 @@ public class MetadataRepository {
 			case 104:
 				metadataResource.getApexTriggers();
 				break;
+			case 105:
+				metadataResource.getCustomField();
+				break;
+			case 106:
+				metadataResource.getCustomField();
+				break;
 			case 120:
 				metadataResource.getRecordType();
 				break;
