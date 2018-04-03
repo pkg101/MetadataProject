@@ -10,6 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+
+import org.json.JSONObject;
+
 import metadataResources.MetadataResource;
 
 @Path("sfdcmetadata")
@@ -23,16 +26,18 @@ public class MetadataRepository {
 	public Response getdata(@FormParam("metadata") List<String> classnames, @FormParam("sfdcuserid") String sfdcuserid,
 			@FormParam("sdate") String sdate, @FormParam("edate") String edate,@FormParam("logintoken") List<String> logintoken) throws Exception {
 		
-		System.out.println(classnames);
-		System.out.println(sfdcuserid);
-		System.out.println(sdate+"T00:00:00.000Z" + "--" + edate+"T00:00:00.000Z");
+		JSONObject loginobject = new JSONObject();
+		loginobject.put("instance_url",logintoken.get(0) );
+		loginobject.put("access_token", logintoken.get(1)+logintoken.get(2));
+		
+		System.out.println("metadata - "+classnames);
+		System.out.println("UserId - "+sfdcuserid);
 		System.out.println("logintoken - "+logintoken);
-		sdate+="T23:59:59.000Z";
-		edate+="T23:59:59.000Z";
+	System.out.println(sdate+"---"+edate);
 		for (int i = 0; i < classnames.size(); i++) {
 			switch (Integer.parseInt(classnames.get(i))) {
 			case 101:
-				metadataResource.getApexClasses(sfdcuserid,sdate,edate);
+				metadataResource.getApexClasses(loginobject,sfdcuserid,sdate+"T23:59:59.000Z",edate+"T23:59:59.000Z");
 				break;
 			case 102:
 				metadataResource.getApexPages();
@@ -41,7 +46,7 @@ public class MetadataRepository {
 				metadataResource.getApexComponents();
 				break;
 			case 104:
-				metadataResource.getApexTriggers(sfdcuserid,sdate,edate);
+				metadataResource.getApexTriggers(loginobject,sfdcuserid,sdate+"T23:59:59.000Z",edate+"T23:59:59.000Z");
 				break;
 			case 105:
 				metadataResource.getCustomField();
