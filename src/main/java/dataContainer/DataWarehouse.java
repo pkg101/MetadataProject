@@ -16,10 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DataWarehouse {
-	public static JSONArray getCustomObjectList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getCustomObjectList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getCustomObjects(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getDeveloperNameQuery("CustomObject",startdate,enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -81,12 +81,12 @@ public class DataWarehouse {
 	}
 
 	public static JSONArray getCustomFieldList(JSONObject loginObject, String startdate, String enddate,
-			String objectname) {
+			String objectname,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
 		String ObjectRestURL;
 
-		ObjectRestURL = ToolingQueryList.getCustom_StdObjectFields(startdate, enddate, objectname);
+		ObjectRestURL = ToolingQueryList.getCustom_StdObjectFields(startdate, enddate, objectname,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -115,12 +115,12 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray __getCustomFieldList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray __getCustomFieldList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
 		String ObjectRestURL;
 
-		ObjectRestURL = ToolingQueryList.getCustomFields(startdate, enddate);
+		ObjectRestURL = ToolingQueryList.getCustomFields(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -181,16 +181,16 @@ public class DataWarehouse {
 		return objname;
 	}
 
-	public static JSONArray getApexTriggerList(JSONObject loginObject, String startdate, String enddate,String sfdcuserid) {
+	public static JSONArray getApexTriggerList(JSONObject loginObject, String startdate, String enddate,String sfcdUserId) {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexTriggers(startdate, enddate,sfdcuserid);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("ApexTrigger",startdate, enddate,sfcdUserId);
 
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
-		System.out.println(AccessToken);
+
 		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
 
 		String uri = instanceURL + RestResourceURL.getToolingQueryURL(ObjectRestURL);
@@ -217,10 +217,10 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getApexClassList(JSONObject loginObject, String startdate, String enddate,String sfdcuserid) {
+	public static JSONArray getApexClassList(JSONObject loginObject, String startdate, String enddate,String sfcdUserId) {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexClasses(startdate, enddate,sfdcuserid);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("ApexClass",startdate, enddate,sfcdUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
@@ -286,10 +286,10 @@ public class DataWarehouse {
 		return objectlist;
 	}
 
-	public static JSONArray getStdObjectList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getStdObjectList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getStdObject(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getStdObject(startdate, enddate,sfdcUserId);
 
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
@@ -316,10 +316,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getApexComponentList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getApexComponentList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexComponents(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("ApexComponent",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -344,10 +344,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getApexPageList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getApexPageList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexPages(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("ApexPage",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -372,10 +372,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getAuraDefinitionBundleList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getAuraDefinitionBundleList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getAuraDefinitionBundles(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getDeveloperNameQuery("AuraDefinitionBundle",startdate,enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -402,10 +402,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getAssignmentRuleList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getAssignmentRuleList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getAssignmentRules(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getAssignmentRules(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -432,10 +432,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getAutoResponseList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getAutoResponseList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getAutoResponseRules(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getAutoResponseRules(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -462,10 +462,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getBusinessProcessList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getBusinessProcessList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getBusinessProcess(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getBusinessProcess(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -492,10 +492,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getEmailTemplateList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getEmailTemplateList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getEmailTemplates(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("EmailTemplate",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -522,10 +522,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getFieldSetList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getFieldSetList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getFieldSet(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getDeveloperNameQuery("FieldSet",startdate,enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -552,10 +552,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getFlexiPageList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getFlexiPageList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getFlexiPage(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getDeveloperNameQuery("FlexiPage",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -582,10 +582,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getGlobalValueSetList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getGlobalValueSetList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getGlobalValueSet(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getDeveloperNameQuery("GlobalValueSet",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -612,10 +612,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getHomePageLayoutList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getHomePageLayoutList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getHomePageLayout(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("HomePageLayout",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -642,10 +642,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getRecordTypeList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getRecordTypeList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getRecordType(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getRecordType(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -672,10 +672,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getStaticResourceList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getStaticResourceList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getStaticResource(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("StaticResource",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -702,10 +702,10 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getValidationRuleList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getValidationRuleList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getValidationRuleID(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getValidationRuleID(startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
@@ -761,9 +761,9 @@ public class DataWarehouse {
 	}
 
 	// --------------------gupta start-------------------------
-	public static JSONArray getWorkflowTaskList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getWorkflowTaskList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		JSONArray jsonArray = null;
-		String query = ToolingQueryList.getWorkflowTaskid(startdate,enddate);
+		String query = ToolingQueryList.getWorkflowTaskid(startdate,enddate,sfdcUserId);
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
 		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
@@ -785,9 +785,9 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getWorkflowAlertList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getWorkflowAlertList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		JSONArray jsonArray = null;
-		String query = ToolingQueryList.getWorkflowAlertid(startdate,enddate);
+		String query = ToolingQueryList.getWorkflowAlertid(startdate,enddate,sfdcUserId);
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
 		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
@@ -809,9 +809,9 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray geWebLinkList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray geWebLinkList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getWebLinks(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("WebLink",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
@@ -833,9 +833,9 @@ public class DataWarehouse {
 		return jsonArray;
 	}
 
-	public static JSONArray getUserList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getUserList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId) {
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getUsers(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getNameQuery("User",startdate, enddate,sfdcUserId);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
@@ -859,11 +859,11 @@ public class DataWarehouse {
 
 	// --------------------gupta end---------------------------
 	// -------------------------monty start-----------------------------
-	public static JSONArray getProfileList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getProfileList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getProfile(startdate, enddate);
+		String URL = ToolingQueryList.getNameQuery("Profile",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -897,11 +897,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getCustomApplicationList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getCustomApplicationList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getCustomApplication(startdate, enddate);
+		String URL = ToolingQueryList.getDeveloperNameQuery("CustomApplication",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -935,11 +935,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getWorkflowFieldUpdateList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getWorkflowFieldUpdateList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getWorkflowFieldUpdate(startdate, enddate);
+		String URL = ToolingQueryList.getWorkflowFieldUpdate(startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -973,10 +973,10 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getCompactLayoutList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getCompactLayoutList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getCompactLayout(startdate, enddate);
+		String URL = ToolingQueryList.getCompactLayout(startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		String instanceURL = loginObject.getString("instance_url");
@@ -1002,49 +1002,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getWorkflowRuleList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getWorkflowRuleList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getWorkflowRule(startdate, enddate);
-		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
-		// System.out.println("uri :"+uri);
-
-		HttpClient httpClient = HttpClientBuilder.create().build();
-
-		String instanceURL = loginObject.getString("instance_url");
-		String AccessToken = loginObject.getString("access_token");
-
-		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
-
-		String uri = instanceURL + RestResourceURL.getToolingQueryURL(ObjectRestURL);
-		// String uri= URLEncoder.encode(URL, "UTF-8");
-		// System.out.println("uri :"+uri);
-
-		HttpResponse response = null;
-		HttpGet httpget = new HttpGet(uri);
-		httpget.addHeader(oauthHeader);
-		try {
-			response = httpClient.execute(httpget);
-			if (response.getStatusLine().getStatusCode() == 200) {
-				String Result = EntityUtils.toString(response.getEntity());
-				JSONObject jsonObject = new JSONObject(Result);
-
-				jsonArray = jsonObject.getJSONArray("records");
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonArray;
-
-	}
-
-	public static JSONArray getLayoutList(JSONObject loginObject, String startdate, String enddate)
-			throws UnsupportedEncodingException {
-		// List<String> metadtalist = new ArrayList<String>();
-		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getLayout(startdate, enddate);
+		String URL = ToolingQueryList.getWorkflowRule(startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -1078,11 +1040,49 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getFlowList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getLayoutList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getFlow(startdate, enddate);
+		String URL = ToolingQueryList.getLayout(startdate, enddate,sfdcUserId);
+		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
+		// System.out.println("uri :"+uri);
+
+		HttpClient httpClient = HttpClientBuilder.create().build();
+
+		String instanceURL = loginObject.getString("instance_url");
+		String AccessToken = loginObject.getString("access_token");
+
+		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
+
+		String uri = instanceURL + RestResourceURL.getToolingQueryURL(ObjectRestURL);
+		// String uri= URLEncoder.encode(URL, "UTF-8");
+		// System.out.println("uri :"+uri);
+
+		HttpResponse response = null;
+		HttpGet httpget = new HttpGet(uri);
+		httpget.addHeader(oauthHeader);
+		try {
+			response = httpClient.execute(httpget);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				String Result = EntityUtils.toString(response.getEntity());
+				JSONObject jsonObject = new JSONObject(Result);
+
+				jsonArray = jsonObject.getJSONArray("records");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonArray;
+
+	}
+
+	public static JSONArray getFlowList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
+			throws UnsupportedEncodingException {
+		// List<String> metadtalist = new ArrayList<String>();
+		JSONArray jsonArray = null;
+		String URL = ToolingQueryList.getFlow(startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -1157,11 +1157,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getPermissionSetList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getPermissionSetList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getPermissionSet(startdate, enddate);
+		String URL = ToolingQueryList.getNameQuery("PermissionSet",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -1195,10 +1195,10 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getConnectedApplicationList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getConnectedApplicationList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getConnectedApplication(startdate, enddate);
+		String URL = ToolingQueryList.getNameQuery("ConnectedApplication",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
@@ -1227,11 +1227,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getCustomTabList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getCustomTabList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getCustomTab(startdate, enddate);
+		String URL = ToolingQueryList.getCustomTab(startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -1265,11 +1265,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getDashboardList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getDashboardList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getDashboard(startdate, enddate);
+		String URL = ToolingQueryList.getDeveloperNameQuery("Dashboard",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 
@@ -1303,11 +1303,11 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getReportList(JSONObject loginObject, String startdate, String enddate)
+	public static JSONArray getReportList(JSONObject loginObject, String startdate, String enddate,String sfdcUserId)
 			throws UnsupportedEncodingException {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String URL = ToolingQueryList.getReport(startdate, enddate);
+		String URL = ToolingQueryList.getDeveloperNameQuery("Report",startdate, enddate,sfdcUserId);
 		String ObjectRestURL = URLEncoder.encode(URL, "UTF-8");
 		// System.out.println("uri :"+uri);
 

@@ -54,9 +54,9 @@ import metadataPOJO.WorkFlowTask;
 
 public class MetadataResource {
 
-	JSONObject loginObject = RestLogin.GetLoginObject();
+	/*JSONObject loginObject = RestLogin.GetLoginObject();
 	String startdate = "2018-02-01T17:23:04.000Z";
-	String enddate = "2018-03-01T17:23:04.000Z";
+	String enddate = "2018-03-01T17:23:04.000Z";*/
 	Document doc;
 	Element xmlroot;
 
@@ -136,9 +136,9 @@ public class MetadataResource {
 		return apexTriggerList;
 	}
 
-	public List<ApexPage> getApexPages() throws Exception {
+	public List<ApexPage> getApexPages(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<ApexPage> apexPageList = new ArrayList<ApexPage>();
-		JSONArray apexPageArray = DataWarehouse.getApexPageList(loginObject, startdate, enddate);
+		JSONArray apexPageArray = DataWarehouse.getApexPageList(loginObject, startdate, enddate,sfdcuserid);
 		if (apexPageArray != null) {
 			if (apexPageArray.length() > 0) {
 				Element xmlapexPagetype = doc.createElement("types");
@@ -164,9 +164,9 @@ public class MetadataResource {
 		return apexPageList;
 	}
 
-	public List<ApexComponent> getApexComponents() throws Exception {
+	public List<ApexComponent> getApexComponents(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<ApexComponent> ApexComponentList = new ArrayList<ApexComponent>();
-		JSONArray apexComponentArray = DataWarehouse.getApexComponentList(loginObject, startdate, enddate);
+		JSONArray apexComponentArray = DataWarehouse.getApexComponentList(loginObject, startdate, enddate,sfdcuserid);
 		if (apexComponentArray != null) {
 			if (apexComponentArray.length() > 0) {
 				Element xmlapexComponenttype = doc.createElement("types");
@@ -192,9 +192,9 @@ public class MetadataResource {
 		return ApexComponentList;
 	}
 
-	public List<AssignmentRule> getAssignmentRule() throws Exception {
+	public List<AssignmentRule> getAssignmentRule(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<AssignmentRule> AssignmentRuleList = new ArrayList<AssignmentRule>();
-		JSONArray assignmentRuleArray = DataWarehouse.getAssignmentRuleList(loginObject, startdate, enddate);
+		JSONArray assignmentRuleArray = DataWarehouse.getAssignmentRuleList(loginObject, startdate, enddate,sfdcuserid);
 		if (assignmentRuleArray != null) {
 			if (assignmentRuleArray.length() > 0) {
 				Element xmlassignmentRuletype = doc.createElement("types");
@@ -223,10 +223,9 @@ public class MetadataResource {
 		return AssignmentRuleList;
 	}
 
-	public List<AuraDefinitionBundle> getAuraDefinitionBundle() throws Exception {
+	public List<AuraDefinitionBundle> getAuraDefinitionBundle(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<AuraDefinitionBundle> AuraDefinitionBundleList = new ArrayList<AuraDefinitionBundle>();
-		JSONArray auraDefinitionBundleArray = DataWarehouse.getAuraDefinitionBundleList(loginObject, startdate,
-				enddate);
+		JSONArray auraDefinitionBundleArray = DataWarehouse.getAuraDefinitionBundleList(loginObject, startdate,enddate,sfdcuserid);
 		if (auraDefinitionBundleArray != null) {
 			if (auraDefinitionBundleArray.length() > 0) {
 				Element xmlAuraDefinitionBundletype = doc.createElement("types");
@@ -252,9 +251,9 @@ public class MetadataResource {
 		return AuraDefinitionBundleList;
 	}
 
-	public List<AutoResponse> getAutoResponse() throws Exception {
+	public List<AutoResponse> getAutoResponse(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<AutoResponse> AutoResponseList = new ArrayList<AutoResponse>();
-		JSONArray autoResponseArray = DataWarehouse.getAutoResponseList(loginObject, startdate, enddate);
+		JSONArray autoResponseArray = DataWarehouse.getAutoResponseList(loginObject, startdate, enddate,sfdcuserid);
 		if (autoResponseArray != null) {
 			if (autoResponseArray.length() > 0) {
 				Element xmlautoResponseListtype = doc.createElement("types");
@@ -281,9 +280,9 @@ public class MetadataResource {
 		return AutoResponseList;
 	}
 
-	public List<BusinessProcess> getBusinessProcess() throws Exception {
+	public List<BusinessProcess> getBusinessProcess(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<BusinessProcess> BusinessProcessList = new ArrayList<BusinessProcess>();
-		JSONArray businessProcessArray = DataWarehouse.getBusinessProcessList(loginObject, startdate, enddate);
+		JSONArray businessProcessArray = DataWarehouse.getBusinessProcessList(loginObject, startdate, enddate,sfdcuserid);
 		if (businessProcessArray != null) {
 			if (businessProcessArray.length() > 0) {
 				Element xmlbusinessProcesstype = doc.createElement("types");
@@ -309,9 +308,9 @@ public class MetadataResource {
 		return BusinessProcessList;
 	}
 
-	public List<CompactLayout> getCompactLayout() throws Exception {
+	public List<CompactLayout> getCompactLayout(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<CompactLayout> CompactLayoutList = new ArrayList<CompactLayout>();
-		JSONArray compactLayoutArray = DataWarehouse.getCompactLayoutList(loginObject, startdate, enddate);
+		JSONArray compactLayoutArray = DataWarehouse.getCompactLayoutList(loginObject, startdate, enddate,sfdcuserid);
 		if (compactLayoutArray != null) {
 			if (compactLayoutArray.length() > 0) {
 				Element xmlcompactLayouttype = doc.createElement("types");
@@ -340,10 +339,9 @@ public class MetadataResource {
 		return CompactLayoutList;
 	}
 
-	public List<ConnectedApplication> getConnectedApplication() throws Exception {
+	public List<ConnectedApplication> getConnectedApplication(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<ConnectedApplication> ConnectedApplicationList = new ArrayList<ConnectedApplication>();
-		JSONArray connectedApplicationArray = DataWarehouse.getConnectedApplicationList(loginObject, startdate,
-				enddate);
+		JSONArray connectedApplicationArray = DataWarehouse.getConnectedApplicationList(loginObject, startdate,enddate,sfdcuserid);
 		if (connectedApplicationArray != null) {
 			if (connectedApplicationArray.length() > 0) {
 				Element xmlconnectedApplicationtype = doc.createElement("types");
@@ -369,9 +367,9 @@ public class MetadataResource {
 		return ConnectedApplicationList;
 	}
 
-	public List<CustomApplication> getCustomApplication() throws Exception {
+	public List<CustomApplication> getCustomApplication(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<CustomApplication> CustomApplicationList = new ArrayList<CustomApplication>();
-		JSONArray customApplicationArray = DataWarehouse.getCustomApplicationList(loginObject, startdate, enddate);
+		JSONArray customApplicationArray = DataWarehouse.getCustomApplicationList(loginObject, startdate, enddate,sfdcuserid);
 		if (customApplicationArray != null) {
 			if (customApplicationArray.length() > 0) {
 				Element xmlcustomApplicationtype = doc.createElement("types");
@@ -397,9 +395,9 @@ public class MetadataResource {
 		return CustomApplicationList;
 	}
 
-	public List<CustomObject> getCustomObject() throws Exception {
+	public List<CustomObject> getCustomObject(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<CustomObject> CustomObjectList = new ArrayList<CustomObject>();
-		JSONArray customobjectArray = DataWarehouse.getCustomObjectList(loginObject, startdate, enddate);
+		JSONArray customobjectArray = DataWarehouse.getCustomObjectList(loginObject, startdate, enddate,sfdcuserid);
 		if (customobjectArray != null) {
 			if (customobjectArray.length() > 0) {
 				Element xmlcustomobjecttype = doc.createElement("types");
@@ -427,9 +425,9 @@ public class MetadataResource {
 		return CustomObjectList;
 	}
 
-	public List<CustomField> getCustomField() throws Exception {
+	public List<CustomField> getCustomField(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<CustomField> CustomFieldList = new ArrayList<CustomField>();
-		JSONArray customFieldArray = DataWarehouse.__getCustomFieldList(loginObject, startdate, enddate);
+		JSONArray customFieldArray = DataWarehouse.__getCustomFieldList(loginObject, startdate, enddate,sfdcuserid);
 		if (customFieldArray != null) {
 			if (customFieldArray.length() > 0) {
 				Element xmlcustomfieldtype = doc.createElement("types");
@@ -462,9 +460,9 @@ public class MetadataResource {
 		return CustomFieldList;
 	}
 
-	public List<CustomTab> getCustomTab() throws Exception {
+	public List<CustomTab> getCustomTab(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<CustomTab> CustomTabList = new ArrayList<CustomTab>();
-		JSONArray customTabArray = DataWarehouse.getCustomTabList(loginObject, startdate, enddate);
+		JSONArray customTabArray = DataWarehouse.getCustomTabList(loginObject, startdate, enddate,sfdcuserid);
 		if (customTabArray != null) {
 			if (customTabArray.length() > 0) {
 				Element xmlcustomTabtype = doc.createElement("types");
@@ -494,9 +492,9 @@ public class MetadataResource {
 		return CustomTabList;
 	}
 
-	public List<Dashboard> getDashboard() throws Exception {
+	public List<Dashboard> getDashboard(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Dashboard> DashboardList = new ArrayList<Dashboard>();
-		JSONArray dashboardArray = DataWarehouse.getDashboardList(loginObject, startdate, enddate);
+		JSONArray dashboardArray = DataWarehouse.getDashboardList(loginObject, startdate, enddate,sfdcuserid);
 		if (dashboardArray != null) {
 			if (dashboardArray.length() > 0) {
 				Element xmldashboardtype = doc.createElement("types");
@@ -523,9 +521,9 @@ public class MetadataResource {
 		return DashboardList;
 	}
 
-	public List<EmailTemplate> getEmailTemplate() throws Exception {
+	public List<EmailTemplate> getEmailTemplate(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<EmailTemplate> EmailTemplateList = new ArrayList<EmailTemplate>();
-		JSONArray emailTemplateArray = DataWarehouse.getEmailTemplateList(loginObject, startdate, enddate);
+		JSONArray emailTemplateArray = DataWarehouse.getEmailTemplateList(loginObject, startdate, enddate,sfdcuserid);
 		if (emailTemplateArray != null) {
 			if (emailTemplateArray.length() > 0) {
 				Element xmlemailTemplateListtype = doc.createElement("types");
@@ -553,9 +551,9 @@ public class MetadataResource {
 
 	}
 
-	public List<FieldSet> getFieldSet() throws Exception {
+	public List<FieldSet> getFieldSet(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<FieldSet> FieldSetList = new ArrayList<FieldSet>();
-		JSONArray fieldSetArray = DataWarehouse.getFieldSetList(loginObject, startdate, enddate);
+		JSONArray fieldSetArray = DataWarehouse.getFieldSetList(loginObject, startdate, enddate,sfdcuserid);
 		if (fieldSetArray != null) {
 			if (fieldSetArray.length() > 0) {
 				Element xmlfieldSettype = doc.createElement("types");
@@ -582,9 +580,9 @@ public class MetadataResource {
 
 	}
 
-	public List<FlexiPage> getFlexiPage() throws Exception {
+	public List<FlexiPage> getFlexiPage (JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<FlexiPage> FlexiPageList = new ArrayList<FlexiPage>();
-		JSONArray flexiPageArray = DataWarehouse.getFlexiPageList(loginObject, startdate, enddate);
+		JSONArray flexiPageArray = DataWarehouse.getFlexiPageList(loginObject, startdate, enddate,sfdcuserid);
 		if (flexiPageArray != null) {
 			if (flexiPageArray.length() > 0) {
 				Element xmlflexiPageListtype = doc.createElement("types");
@@ -612,9 +610,9 @@ public class MetadataResource {
 
 	}
 
-	public List<Flow> getFlow() throws Exception {
+	public List<Flow> getFlow(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Flow> FlowList = new ArrayList<Flow>();
-		JSONArray flowArray = DataWarehouse.getFlowList(loginObject, startdate, enddate);
+		JSONArray flowArray = DataWarehouse.getFlowList(loginObject, startdate, enddate,sfdcuserid);
 		if (flowArray != null) {
 			if (flowArray.length() > 0) {
 				Element xmlflowtype = doc.createElement("types");
@@ -644,9 +642,9 @@ public class MetadataResource {
 
 	}
 
-	public List<GlobalValueSet> getGlobalValueSet() throws Exception {
+	public List<GlobalValueSet> getGlobalValueSet(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<GlobalValueSet> GlobalValueSetList = new ArrayList<GlobalValueSet>();
-		JSONArray globalValueSetArray = DataWarehouse.getGlobalValueSetList(loginObject, startdate, enddate);
+		JSONArray globalValueSetArray = DataWarehouse.getGlobalValueSetList(loginObject, startdate, enddate,sfdcuserid);
 		if (globalValueSetArray != null) {
 			if (globalValueSetArray.length() > 0) {
 				Element xmlglobalValueSettype = doc.createElement("types");
@@ -674,9 +672,9 @@ public class MetadataResource {
 
 	}
 
-	public List<HomePageLayout> getHomePageLayout() throws Exception {
+	public List<HomePageLayout> getHomePageLayout(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<HomePageLayout> HomePageLayoutList = new ArrayList<HomePageLayout>();
-		JSONArray homePageLayoutArray = DataWarehouse.getHomePageLayoutList(loginObject, startdate, enddate);
+		JSONArray homePageLayoutArray = DataWarehouse.getHomePageLayoutList(loginObject, startdate, enddate,sfdcuserid);
 		if (homePageLayoutArray != null) {
 			if (homePageLayoutArray.length() > 0) {
 				Element xmlhomePageLayouttype = doc.createElement("types");
@@ -703,9 +701,9 @@ public class MetadataResource {
 		return HomePageLayoutList;
 	}
 
-	public List<Layout> getLayout() throws Exception {
+	public List<Layout> getLayout(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Layout> LayoutList = new ArrayList<Layout>();
-		JSONArray layoutArray = DataWarehouse.getLayoutList(loginObject, startdate, enddate);
+		JSONArray layoutArray = DataWarehouse.getLayoutList(loginObject, startdate, enddate,sfdcuserid);
 		if (layoutArray != null) {
 			if (layoutArray.length() > 0) {
 				Element xmlcustomfieldtype = doc.createElement("types");
@@ -739,9 +737,9 @@ public class MetadataResource {
 
 	}
 
-	public List<Permission> getPermission() throws Exception {
+	public List<Permission> getPermission(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Permission> PermissionList = new ArrayList<Permission>();
-		JSONArray permissionSetArray = DataWarehouse.getPermissionSetList(loginObject, startdate, enddate);
+		JSONArray permissionSetArray = DataWarehouse.getPermissionSetList(loginObject, startdate, enddate,sfdcuserid);
 		if (permissionSetArray != null) {
 			if (permissionSetArray.length() > 0) {
 				Element xmlpermissionSettype = doc.createElement("types");
@@ -769,9 +767,9 @@ public class MetadataResource {
 
 	}
 
-	public List<Profile> getProfile() throws Exception {
+	public List<Profile> getProfile(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Profile> ProfileList = new ArrayList<Profile>();
-		JSONArray profileArray = DataWarehouse.getProfileList(loginObject, startdate, enddate);
+		JSONArray profileArray = DataWarehouse.getProfileList(loginObject, startdate, enddate,sfdcuserid);
 		if (profileArray != null) {
 			if (profileArray.length() > 0) {
 				Element xmlprofiletype = doc.createElement("types");
@@ -799,9 +797,9 @@ public class MetadataResource {
 
 	}
 
-	public List<RecordType> getRecordType() throws Exception {
+	public List<RecordType> getRecordType(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<RecordType> RecordTypeList = new ArrayList<RecordType>();
-		JSONArray recordTypeArray = DataWarehouse.getRecordTypeList(loginObject, startdate, enddate);
+		JSONArray recordTypeArray = DataWarehouse.getRecordTypeList(loginObject, startdate, enddate,sfdcuserid);
 		if (recordTypeArray != null) {
 			if (recordTypeArray.length() > 0) {
 				Element xmlrecordTypetype = doc.createElement("types");
@@ -830,9 +828,9 @@ public class MetadataResource {
 
 	}
 
-	public List<Report> getReport() throws Exception {
+	public List<Report> getReport(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<Report> ReportList = new ArrayList<Report>();
-		JSONArray reportArray = DataWarehouse.getReportList(loginObject, startdate, enddate);
+		JSONArray reportArray = DataWarehouse.getReportList(loginObject, startdate, enddate,sfdcuserid);
 		if (reportArray != null) {
 			if (reportArray.length() > 0) {
 				Element xmlreporttype = doc.createElement("types");
@@ -859,9 +857,9 @@ public class MetadataResource {
 
 	}
 
-	public List<StaticResources> getStaticResources() throws Exception {
+	public List<StaticResources> getStaticResources(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<StaticResources> StaticResourcesList = new ArrayList<StaticResources>();
-		JSONArray staticResourceArray = DataWarehouse.getStaticResourceList(loginObject, startdate, enddate);
+		JSONArray staticResourceArray = DataWarehouse.getStaticResourceList(loginObject, startdate, enddate,sfdcuserid);
 		if (staticResourceArray != null) {
 			if (staticResourceArray.length() > 0) {
 				Element xmlstaticResourcetype = doc.createElement("types");
@@ -888,9 +886,9 @@ public class MetadataResource {
 
 	}
 
-	public List<User> getUser() throws Exception {
+	public List<User> getUser(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<User> UserList = new ArrayList<User>();
-		JSONArray UserArray = DataWarehouse.getUserList(loginObject, startdate, enddate);
+		JSONArray UserArray = DataWarehouse.getUserList(loginObject, startdate, enddate,sfdcuserid);
 		if (UserArray != null) {
 			if (UserArray.length() > 0) {
 				Element xmlUserType = doc.createElement("types");
@@ -916,9 +914,9 @@ public class MetadataResource {
 
 	}
 
-	public List<ValidationRule> getValidationRule() throws Exception {
+	public List<ValidationRule> getValidationRule(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<ValidationRule> ValidationRuleList = new ArrayList<ValidationRule>();
-		JSONArray validationRuleArray = DataWarehouse.getValidationRuleList(loginObject, startdate, enddate);
+		JSONArray validationRuleArray = DataWarehouse.getValidationRuleList(loginObject, startdate, enddate,sfdcuserid);
 		if (validationRuleArray != null) {
 			if (validationRuleArray.length() > 0) {
 				Element xmlvalidationRuletype = doc.createElement("types");
@@ -946,9 +944,9 @@ public class MetadataResource {
 
 	}
 
-	public List<WebLink> getWebLink() throws Exception {
+	public List<WebLink> getWebLink(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<WebLink> WebLinkList = new ArrayList<WebLink>();
-		JSONArray WebLinArray = DataWarehouse.geWebLinkList(loginObject, startdate, enddate);
+		JSONArray WebLinArray = DataWarehouse.geWebLinkList(loginObject, startdate, enddate,sfdcuserid);
 		if (WebLinArray != null) {
 			if (WebLinArray.length() > 0) {
 				Element xmlWebLinkType = doc.createElement("types");
@@ -974,9 +972,9 @@ public class MetadataResource {
 		return WebLinkList;
 	}
 
-	public List<WorkFlowAlert> getWorkFlowAlert() throws Exception {
+	public List<WorkFlowAlert> getWorkFlowAlert(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<WorkFlowAlert> WorkFlowAlertList = new ArrayList<WorkFlowAlert>();
-		JSONArray objWorkFlowAlert = DataWarehouse.getWorkflowAlertList(loginObject, startdate, enddate);
+		JSONArray objWorkFlowAlert = DataWarehouse.getWorkflowAlertList(loginObject, startdate, enddate,sfdcuserid);
 		if (objWorkFlowAlert != null) {
 			if (objWorkFlowAlert.length() > 0) {
 				Element xmlobjWorkFlowAlerttype = doc.createElement("types");
@@ -1004,9 +1002,9 @@ public class MetadataResource {
 		return WorkFlowAlertList;
 	}
 
-	public List<WorkFlowFieldUpdate> getWorkFlowFieldUpdate() throws Exception {
+	public List<WorkFlowFieldUpdate> getWorkFlowFieldUpdate(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<WorkFlowFieldUpdate> WorkFlowFieldUpdateList = new ArrayList<WorkFlowFieldUpdate>();
-		JSONArray workflowFieldUpdateArray = DataWarehouse.getWorkflowFieldUpdateList(loginObject, startdate, enddate);
+		JSONArray workflowFieldUpdateArray = DataWarehouse.getWorkflowFieldUpdateList(loginObject, startdate, enddate,sfdcuserid);
 		if (workflowFieldUpdateArray != null) {
 			if (workflowFieldUpdateArray.length() > 0) {
 				Element xmlworkflowFieldUpdatetype = doc.createElement("types");
@@ -1035,9 +1033,9 @@ public class MetadataResource {
 		return WorkFlowFieldUpdateList;
 	}
 
-	public List<WorkFlowRule> getWorkFlowRule() throws Exception {
+	public List<WorkFlowRule> getWorkFlowRule(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<WorkFlowRule> WorkFlowRuleList = new ArrayList<WorkFlowRule>();
-		JSONArray workflowRuleList = DataWarehouse.getWorkflowRuleList(loginObject, startdate, enddate);
+		JSONArray workflowRuleList = DataWarehouse.getWorkflowRuleList(loginObject, startdate, enddate,sfdcuserid);
 		if (workflowRuleList != null) {
 			if (workflowRuleList.length() > 0) {
 				Element xmlworkflowRuletype = doc.createElement("types");
@@ -1065,9 +1063,9 @@ public class MetadataResource {
 		return WorkFlowRuleList;
 	}
 
-	public List<WorkFlowTask> getWorkFlowTask() throws Exception {
+	public List<WorkFlowTask> getWorkFlowTask(JSONObject loginObject,String sfdcuserid,String startdate,String enddate) throws Exception {
 		List<WorkFlowTask> WorkFlowTaskList = new ArrayList<WorkFlowTask>();
-		JSONArray objWorkFlowTask = DataWarehouse.getWorkflowTaskList(loginObject, startdate, enddate);
+		JSONArray objWorkFlowTask = DataWarehouse.getWorkflowTaskList(loginObject, startdate, enddate,sfdcuserid);
 		if (objWorkFlowTask != null) {
 			if (objWorkFlowTask.length() > 0) {
 				Element xmlobjWorkFlowTasktype = doc.createElement("types");

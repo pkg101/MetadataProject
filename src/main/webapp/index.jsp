@@ -32,9 +32,8 @@
 					<select class="browser-default" name="sfdcuserid">
 						<option value="" disabled selected>Select User</option>
 						<%
-							
 							JSONObject loginObject = RestLogin.GetLoginObject();
-							JSONArray UserArray = DataWarehouse.getUserList(loginObject, "", "");
+							JSONArray UserArray = DataWarehouse.getUserList(loginObject, "", "", "");//startdate,endate,accestoken
 							for (int i = 0; i < UserArray.length(); i++) {
 						%>
 						<option value="<%=UserArray.getJSONObject(i).getString("Id")%>"><%=UserArray.getJSONObject(i).getString("Name")%></option>
@@ -56,26 +55,205 @@
 				</div>
 
 			</div>
-			<p>
-				<label> <input type="checkbox" name="metadata" value="101" />
-					<span>Apex Class</span>
-				</label>
-			</p>
-			<p>
-				<label> <input type="checkbox" name="metadata" value="104" />
-					<span>Apex Trigger</span>
-				</label>
-			</p>
-			<p>
-				<label> <input type="checkbox" name="metadata" value="102" />
-					<span>Apex Page</span>
-				</label>
-			</p>
-			<p>
-				<label> <input type="checkbox" name="metadata" value="103" />
-					<span>Apex Component</span>
-				</label>
-			</p>
+			<div class="row">
+				<div class="col s12 m4 l3">
+					<p>
+						<label> <input type="checkbox" name="metadata" value="101" />
+							<span>Apex Class</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="102" />
+							<span>Apex Component </span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="103" />
+							<span>Apex Page</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="104" />
+							<span>Apex Trigger</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+					<p>
+						<label> <input type="checkbox" name="metadata" value="105" />
+							<span>Assignment Rule</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="106" />
+							<span>AuraDefinition Rule</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="107" />
+							<span>Auto Response</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="108" />
+							<span>Business Process</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="109" />
+							<span>Compact Layout</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="110" />
+							<span>Connected Application</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="111" />
+							<span>Custom Application</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="112" />
+							<span>Custom Filed</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="113" />
+							<span>Custom Object</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="114" />
+							<span>Custom Tab</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="115" />
+							<span>Dashboard</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="116" />
+							<span>Email Template</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="117" />
+							<span>Field Set</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="118" />
+							<span>Flexi Page</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="119" />
+							<span>Flow</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="120" />
+							<span>Global Value Set</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="121" />
+							<span>Home Page Layout</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="122" />
+							<span>Layout</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="123" />
+							<span>Permission</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="124" />
+							<span>Profile</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="125" />
+							<span>Record Type</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="126" />
+							<span>Report</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="127" />
+							<span>Static Resources</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="128" />
+							<span>User</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="129" />
+							<span>Validation Rule</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="130" />
+							<span>WebLink</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="131" />
+							<span>WorkFlowAlert</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="132" />
+							<span>WorkFlowFieldUpdate</span>
+						</label>
+					</p>
+				</div>
+				<div class="col s12 m4 l3">
+
+					<p>
+						<label> <input type="checkbox" name="metadata" value="133" />
+							<span>WorkflowRulle</span>
+						</label>
+					</p>
+					<p>
+						<label> <input type="checkbox" name="metadata" value="134" />
+							<span>Workflow Task</span>
+						</label>
+					</p>
+				</div>
+			</div>
+
+
 
 
 			<input type="submit" value="Submit">
