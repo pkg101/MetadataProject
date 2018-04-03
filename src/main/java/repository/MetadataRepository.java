@@ -19,13 +19,20 @@ public class MetadataRepository {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public Response getdata(@FormParam("metadata") List<String> classnames) throws Exception {
-
+	@Produces({MediaType.APPLICATION_OCTET_STREAM,MediaType.APPLICATION_JSON})
+	public Response getdata(@FormParam("metadata") List<String> classnames, @FormParam("sfdcuserid") String sfdcuserid,
+			@FormParam("sdate") String sdate, @FormParam("edate") String edate,@FormParam("logintoken") List<String> logintoken) throws Exception {
+		
+		System.out.println(classnames);
+		System.out.println(sfdcuserid);
+		System.out.println(sdate+"T00:00:00.000Z" + "--" + edate+"T00:00:00.000Z");
+		System.out.println("logintoken - "+logintoken);
+		sdate+="T23:59:59.000Z";
+		edate+="T23:59:59.000Z";
 		for (int i = 0; i < classnames.size(); i++) {
 			switch (Integer.parseInt(classnames.get(i))) {
 			case 101:
-				metadataResource.getApexClasses();
+				metadataResource.getApexClasses(sfdcuserid,sdate,edate);
 				break;
 			case 102:
 				metadataResource.getApexPages();
@@ -34,7 +41,7 @@ public class MetadataRepository {
 				metadataResource.getApexComponents();
 				break;
 			case 104:
-				metadataResource.getApexTriggers();
+				metadataResource.getApexTriggers(sfdcuserid,sdate,edate);
 				break;
 			case 105:
 				metadataResource.getCustomField();
@@ -48,6 +55,7 @@ public class MetadataRepository {
 			}
 		}
 		File file = metadataResource.saveXml();
+	
 	    ResponseBuilder response = Response.ok((Object) file);
 	    response.header("Content-Disposition", "attachment;filename="+file.getName());
 	    return response.build();

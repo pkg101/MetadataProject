@@ -181,16 +181,16 @@ public class DataWarehouse {
 		return objname;
 	}
 
-	public static JSONArray getApexTriggerList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getApexTriggerList(JSONObject loginObject, String startdate, String enddate,String sfdcuserid) {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexTriggers(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getApexTriggers(startdate, enddate,sfdcuserid);
 
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
-
+		System.out.println(AccessToken);
 		Header oauthHeader = new BasicHeader("Authorization", "OAuth " + AccessToken);
 
 		String uri = instanceURL + RestResourceURL.getToolingQueryURL(ObjectRestURL);
@@ -217,10 +217,10 @@ public class DataWarehouse {
 
 	}
 
-	public static JSONArray getApexClassList(JSONObject loginObject, String startdate, String enddate) {
+	public static JSONArray getApexClassList(JSONObject loginObject, String startdate, String enddate,String sfdcuserid) {
 		// List<String> metadtalist = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexClasses(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getApexClasses(startdate, enddate,sfdcuserid);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		String instanceURL = loginObject.getString("instance_url");
 		String AccessToken = loginObject.getString("access_token");
@@ -347,7 +347,7 @@ public class DataWarehouse {
 	public static JSONArray getApexPageList(JSONObject loginObject, String startdate, String enddate) {
 		// List<String> customObjectList = new ArrayList<String>();
 		JSONArray jsonArray = null;
-		String ObjectRestURL = ToolingQueryList.getApexComponents(startdate, enddate);
+		String ObjectRestURL = ToolingQueryList.getApexPages(startdate, enddate);
 		HttpClient httpClient = HttpClientBuilder.create().build();
 
 		String instanceURL = loginObject.getString("instance_url");

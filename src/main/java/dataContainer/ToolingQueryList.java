@@ -63,7 +63,7 @@ public class ToolingQueryList {
 		}
 	}
 
-	public static String getApexTriggers(String startdate, String enddate) {
+	public static String getApexTriggers(String startdate, String enddate,String sfdcuserid) {
 
 		if ((startdate.equalsIgnoreCase("") || startdate == null)
 				&& (enddate.equalsIgnoreCase("") || enddate == null)) {
@@ -79,11 +79,11 @@ public class ToolingQueryList {
 		} else {
 
 			return "select+Id,Name,CreatedById,LastModifiedDate+from+ApexTrigger+where+LastModifiedDate%3E" + startdate
-					+ "+and+LastModifiedDate%3C" + enddate + "+order+by+Name+asc";
+					+ "+and+LastModifiedDate%3C" + enddate + "+and+LastModifiedById%3D'"+sfdcuserid+"'+order+by+Name+asc";
 		}
 	}
 
-	public static String getApexClasses(String startdate, String enddate) {
+	public static String getApexClasses(String startdate, String enddate,String sfdcuserid) {
 
 		if ((startdate.equalsIgnoreCase("") || startdate == null)
 				&& (enddate.equalsIgnoreCase("") || enddate == null)) {
@@ -99,7 +99,7 @@ public class ToolingQueryList {
 		} else {
 
 			return "select+Id,Name,CreatedById,LastModifiedDate+from+ApexClass+where+LastModifiedDate%3E" + startdate
-					+ "+and+LastModifiedDate%3C" + enddate + "+order+by+name+asc";
+					+ "+and+LastModifiedDate%3C" + enddate + "+and+LastModifiedById%3D'"+sfdcuserid+"'+order+by+name+asc";
 		}
 	}
 
@@ -466,7 +466,7 @@ public class ToolingQueryList {
 	public static String getUsers(String startdate, String enddate) {
 		if ((startdate.equalsIgnoreCase("") || startdate == null)
 				&& (enddate.equalsIgnoreCase("") || enddate == null)) {
-			return "select+Id,Name,LastModifiedDate+from+User+order+by+Name+asc";
+			return "select+Id,Name,Username,LastModifiedDate+from+User+order+by+Name+asc";
 
 		} else if (enddate.equalsIgnoreCase("") || enddate == null) {
 			return "select+Id,Name,LastModifiedDate+from+User+where+LastModifiedDate%3E"

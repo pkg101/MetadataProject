@@ -76,8 +76,8 @@ public class MetadataResource {
 		}
 	}
 
-	public List<ApexClass> getApexClasses() throws Exception {
-		JSONArray apexclassArray = DataWarehouse.getApexClassList(loginObject, startdate, enddate);
+	public List<ApexClass> getApexClasses(String sfdcuserid,String startdate,String enddate) throws Exception {
+		JSONArray apexclassArray = DataWarehouse.getApexClassList(loginObject, startdate, enddate,sfdcuserid);
 		List<ApexClass> apexClassList = new ArrayList<ApexClass>();
 		if (apexclassArray != null) {
 			if (apexclassArray.length() > 0) {
@@ -107,8 +107,8 @@ public class MetadataResource {
 		return apexClassList;
 	}
 
-	public List<ApexTrigger> getApexTriggers() throws Exception {
-		JSONArray apexTriggerArray = DataWarehouse.getApexTriggerList(loginObject, startdate, enddate);
+	public List<ApexTrigger> getApexTriggers(String sfdcuserid,String startdate,String enddate) throws Exception {
+		JSONArray apexTriggerArray = DataWarehouse.getApexTriggerList(loginObject, startdate, enddate,sfdcuserid);
 		List<ApexTrigger> apexTriggerList = new ArrayList<ApexTrigger>();
 		if (apexTriggerArray != null) {
 			if (apexTriggerArray.length() > 0) {

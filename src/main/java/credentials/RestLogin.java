@@ -19,6 +19,12 @@ import org.json.JSONTokener;
 
 public class RestLogin {
 	
+	/* 
+	 System.debug('instance url '+Url.getSalesforceBaseUrl().toExternalForm());
+String orgid=(UserInfo.getOrganizationId()).SubString(0,15);
+String access=UserInfo.getSessionId().SubString(15);
+System.debug(orgid+'--'+access);
+ */
 	public static JSONObject GetLoginObject() {
 		 final String username = "info.mca2016@gmail.com";
 		final String password = "info.salesforce@2020ORaS2UDCCiHCveMEA0BFQRWfF";
